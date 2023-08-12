@@ -15,11 +15,17 @@ public class Window {
     String title;
     private long glfwWindow;
 
+    private float r,g,b,a;
+    private boolean fadeToBlack = false;
     private static Window window = null;
     private Window(){
         this.width = 1920;
         this.height = 1080;
         this.title = "Mario";
+        r=1;
+        b=1;
+        g=1;
+        a=1;
     }
 
     public static Window get(){
@@ -85,11 +91,17 @@ public class Window {
     public void loop(){
         while (!glfwWindowShouldClose(glfwWindow)){
             glfwPollEvents();
-            glClearColor(1.0f,1.0f,1.0f,0.1f);
+            glClearColor(r,g,b,a);
             glClear(GL_COLOR_BUFFER_BIT);
 
+            if(fadeToBlack){
+                r = Math.max(r - 0.01f, 0);
+                g= Math.max(g - 0.01f, 0);
+                b = Math.max(b - 0.01f,0);
+            }//space key pressed --> color transitions to black
+
             if(KeyListener.isKeyPressed(GLFW_KEY_SPACE)){
-                System.out.println("Space key is pressed");
+                fadeToBlack = true;
             }
             glfwSwapBuffers(glfwWindow);
 
