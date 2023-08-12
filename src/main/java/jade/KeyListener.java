@@ -25,4 +25,14 @@ public class KeyListener{
             get().keyPressed[key] = false;
         }
     }
+
+    public static boolean isKeyPressed(int keyCode){
+//        if(keyCode < get().keyPressed.length) { // to handle false value passed by the user
+//            return get().keyPressed[keyCode];
+//        }else{
+//            return false;
+//        }
+        //returning the error would be better
+        return get().keyPressed[keyCode];
+    }
 }
