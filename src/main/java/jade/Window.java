@@ -104,7 +104,6 @@ public class Window {
                 fadeToBlack = true;
             }
             glfwSwapBuffers(glfwWindow);
-
         }
     }
 
